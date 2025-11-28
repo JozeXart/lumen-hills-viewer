@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumen Hills — HD Protected Viewer</title>
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* Container fullscreen */
+    .viewer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+
+        /* Image HD IPFS en CSS */
+        background-image: url("https://gateway.pinata.cloud/ipfs/bafybeid45h2vjxc2ev2bndyndhegh3v3w5zzovx3tsou5fhtgjqyaqhevq");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+
+        /* Désactive toute action souris */
+        pointer-events: none;
+
+        /* Anti-drag */
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
+    /* Overlay transparent */
+    .shield {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0);
+        cursor: default;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="viewer"></div>
+<div class="shield"></div>
+
+<script>
+    document.addEventListener("contextmenu", event => event.preventDefault());
+    document.addEventListener("dragstart", event => event.preventDefault());
+
+    document.addEventListener("touchstart", event => {
+        if (event.touches.length > 1)
+            event.preventDefault();
+    }, { passive:false });
+</script>
+
+</body>
+</html>
