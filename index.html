@@ -1,5 +1,91 @@
 <!DOCTYPE html>
+<html lang="fr"><!DOCTYPE html>
 <html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumen Hills — HD Protected Viewer</title>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* Conteneur plein écran avec l'image en background (pas de balise <img>) */
+    .viewer {
+        position: fixed;
+        inset: 0;
+        background-image: url("https://gateway.pinata.cloud/ipfs/bafybeid45h2vjxc2ev2bndyndhegh3v3w5zzovx3tsou5fhtgjqyaqhevq");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+
+        /* Empêche toute interaction directe */
+        pointer-events: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* Couche transparente au-dessus (bloque les clics & drag) */
+    .shield {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0);
+        cursor: default;
+    }
+
+    /* Optionnel : minuscule note en bas (tu peux supprimer si tu veux) */
+    .note {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 10px;
+        color: rgba(255,255,255,0.35);
+        pointer-events: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="viewer"></div>
+<div class="shield"></div>
+<div class="note">Lumen Hills — Secure HD view only</div>
+
+<script>
+    // Désactive clic droit global
+    document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+    });
+
+    // Désactive drag & drop
+    document.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+    });
+
+    // Limite certaines actions clavier (Ctrl+S / Cmd+S, Ctrl+P / Cmd+P)
+    document.addEventListener("keydown", function (e) {
+        if ((e.ctrlKey || e.metaKey) && (e.key === "s" || e.key === "p")) {
+            e.preventDefault();
+        }
+    });
+
+    // Réduit certains gestes tactiles (mobile / iPad)
+    document.addEventListener("touchstart", function (e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+</script>
+
+</body>
+</html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
